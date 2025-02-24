@@ -1,6 +1,7 @@
 # Text Summarization App
 
-![Python](https://img.shields.io/badge/python-3.12.0-339933?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/python-3.12.0-007EC6)
+
 
 ##### Download LaMini Model: https://huggingface.co/MBZUAI/LaMini-Flan-T5-248M
 ##### Add model folder to project folder.
