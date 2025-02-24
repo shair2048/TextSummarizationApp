@@ -4,3 +4,5 @@
 - Add model folder to project folder.
 - Install lib:
   `pip install streamlit langchain transformers torch`
+- Run `app.py`:
+  streamlit run app.py
