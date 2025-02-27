@@ -56,25 +56,37 @@ def displayPDF(file):
 st.set_page_config(layout="wide", page_title="Summarization App")
 
 def main():
-    st.title("Document Summarization App using Language Model")
+    st.title("Text Summarization App")
+    
+    st.sidebar.title("Options")
+    option = st.sidebar.selectbox(
+        "Select an option", 
+        ("Text", "Document"), 
+        index=None,
+    )
+    
+    if option == "Document":
+        uploaded_file = st.file_uploader("Upload your PDF file", type=['pdf'])
+        
+        if uploaded_file is not None:
+            if st.button("Summarize"):
+                col1, col2 = st.columns(2)
+                filepath = "data/"+uploaded_file.name
+                with open(filepath, "wb") as temp_file:
+                    temp_file.write(uploaded_file.read())
+                with col1:
+                    st.info("Uploaded File")
+                    pdf_view = displayPDF(filepath)
 
-    uploaded_file = st.file_uploader("Upload your PDF file", type=['pdf'])
+                with col2:
+                    st.info("Summarization Complete")
+                    
+                    summary = llm_pipeline(filepath)
+                    st.success(summary)
+    elif option == "Text":
+        st.write("Text...")
 
-    if uploaded_file is not None:
-        if st.button("Summarize"):
-            col1, col2 = st.columns(2)
-            filepath = "data/"+uploaded_file.name
-            with open(filepath, "wb") as temp_file:
-                temp_file.write(uploaded_file.read())
-            with col1:
-                st.info("Uploaded File")
-                pdf_view = displayPDF(filepath)
-
-            with col2:
-                st.info("Summarization Complete")
-                
-                summary = llm_pipeline(filepath)
-                st.success(summary)
+    
 
 
 

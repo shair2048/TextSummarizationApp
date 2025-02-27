@@ -1,2 +1,4 @@
 .venv/
 LaMini-Flan-T5-248M/
+encoder_decoder_model.h5
+encoder_decoder_model.keras
