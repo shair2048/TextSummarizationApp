@@ -84,7 +84,27 @@ def main():
                     summary = llm_pipeline(filepath)
                     st.success(summary)
     elif option == "Text":
-        st.write("Text...")
+        text = st.text_area("Enter Text Content:", height=200)
+        
+        if st.button("Summarize"):
+            if text.strip():
+                # Thêm prefix "summarize: " theo yêu cầu của model
+                input_text = "summarize: " + text
+
+                # Tokenize đầu vào
+                inputs = tokenizer(input_text, return_tensors="pt", max_length=512, truncation=True)
+
+                # Tạo bản tóm tắt
+                summary_ids = base_model.generate(**inputs, max_length=150, min_length=30, length_penalty=2.0, num_beams=4)
+
+                # Giải mã kết quả
+                summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+
+                # Hiển thị kết quả
+                st.subheader("Summary:")
+                st.write(summary)
+            else:
+                st.warning("Please enter text content.")
 
     
 
