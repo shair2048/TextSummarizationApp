@@ -1,6 +1,6 @@
 import streamlit as st
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.chains.summarize import load_summarize_chain
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from transformers import pipeline
@@ -55,7 +55,7 @@ def displayPDF(file):
 #streamlit code 
 st.set_page_config(layout="wide", page_title="Summarization App")
 
-def main():
+def run():
     st.title("Text Summarization App")
     
     st.sidebar.title("Options")
@@ -110,5 +110,5 @@ def main():
 
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
