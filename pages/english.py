@@ -56,8 +56,6 @@ def displayPDF(file):
 st.set_page_config(layout="wide", page_title="Summarization App")
 
 def run():
-    st.title("Text Summarization App")
-    
     st.sidebar.title("Options")
     option = st.sidebar.selectbox(
         "Select an option", 
